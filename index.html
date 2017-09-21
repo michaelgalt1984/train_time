@@ -18,6 +18,9 @@
 <link rel="stylesheet" href="css/main.css">
 
 <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<script src="js/moment-with-locales.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+
 </head>
 <body>
 
@@ -74,15 +77,17 @@
                 <label for="frequency_input">Frequency (min):</label>
                 <input type="text" placeholder="type train frequency here" class="form-control" id="frequency_input">
               </div>
-              <button type="submit" class="btn btn-success">Request Your Train Time!</button>              
+              <button type="submit" class="btn btn-success" id="submit_train_request">Request Your Train Time!</button>              
             </div>
           </div>
         </div>
       </div>
     </div> <!-- /container -->        
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
 
     <script src="js/vendor/bootstrap.min.js"></script>
 
