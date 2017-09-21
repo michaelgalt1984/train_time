@@ -36,24 +36,26 @@ $("#submit_train_request").on("click", function() {
 	allScheduleStuff.ref().push(freshly_inputted_train_data);
 
 	// And it looks like it worked... So now I need to that actually get written to the table, which means it will need to draw it from Firebase and then write it to the table
-	allScheduleStuff.ref().on("child_added", function(childSnapshot, prevChildKey) {
-		console.log(childSnapshot.val());
 
-		var firebase_name = childSnapshot.val().name;
-		var firebase_destination = childSnapshot.val().destination;
-		var firebase_frequency = childSnapshot.val().frequency;
-		var firebase_first_train_time = childSnapshot.val().first_train_time;
+
+});
+
+allScheduleStuff.ref().on("child_added", function(childSnapshot, prevChildKey) {
+	console.log(childSnapshot.val());
+
+	var firebase_name = childSnapshot.val().name;
+	var firebase_destination = childSnapshot.val().destination;
+	var firebase_frequency = childSnapshot.val().frequency;
+	var firebase_first_train_time = childSnapshot.val().first_train_time;
 
 		// And, that seemed to work!  Great, so that means that the Firebase "array" is receiving all the stuff which I send it. Now just need to try to write it to the table
 
 		$("#train_info > tbody").append("<tr><td>" + firebase_name + "</td><td>" + firebase_destination + "</td><td>"
-		  	+ firebase_frequency + "<tr><td>" + "TBD" + "</td><td>" + "TBD");
-		});
+			+ firebase_frequency + "</td><td>" + "TBD" + "</td><td>" + "TBD</td></tr>");
+	});
 
 		// And that didn't work... I realize now that I don't have the information for all the other fields of the table (next_arrival_of_train and minutes_away_for_train), so I'm just going to put blank data in there to test that
 		// Still isn't working... not sure why not :/  I have it getting written to Firebase... and it should just put those fields into the table
 		
 		// I guess that I need to try to make the functions to calculate the time for the next arrival of the train, and for how many minutes away that is...
-
-});
-})
+	})
