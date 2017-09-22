@@ -48,11 +48,19 @@ allScheduleStuff.ref().on("child_added", function(childSnapshot, prevChildKey) {
 	var firebase_frequency = childSnapshot.val().frequency;
 	var firebase_first_train_time = childSnapshot.val().first_train_time;
 
-		// And, that seemed to work!  Great, so that means that the Firebase "array" is receiving all the stuff which I send it. Now just need to try to write it to the table
+	// Still haven't done the functions for moment.js to get the next time and time to the next train
 
-		$("#train_info > tbody").append("<tr><td>" + firebase_name + "</td><td>" + firebase_destination + "</td><td>"
-			+ firebase_frequency + "</td><td>" + "TBD" + "</td><td>" + "TBD</td></tr>");
-	});
+
+	var moment_calculator = moment().diff(moment.unix(firebase_first_train_time), "minutes");
+	var time_to_next_train = moment().diff(moment.unix(firebase_first_train_time), "minutes") % firebase_frequency;
+	var time_in_minutes = firebase_frequency - time_to_next_train;
+
+  	var arrival_time = moment().add(time_in_minutes, "m").format("hh:mm A");
+
+
+  $("#train_info > tbody").append("<tr><td>" + firebase_name + "</td><td>" + firebase_destination + "</td><td>"
+  	+ firebase_frequency + "</td><td>" + arrival_time + "</td><td>" + time_in_minutes + "</td></tr>");
+});
 
 		// And that didn't work... I realize now that I don't have the information for all the other fields of the table (next_arrival_of_train and minutes_away_for_train), so I'm just going to put blank data in there to test that
 		// Still isn't working... not sure why not :/  I have it getting written to Firebase... and it should just put those fields into the table
